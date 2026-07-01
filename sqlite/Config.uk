@@ -1,0 +1,14 @@
+### Config.uk for SQLite with FreeBSD Libc
+config APP_SQLITE_FREEBSD
+    bool "SQLite with FreeBSD Libc"
+    default y
+    select LIBFREEBSD_LIBC
+
+    # SQLite library — note we deliberately do NOT select
+    # LIBSQLITE_MAIN_FUNCTION; this app provides its own main() in main.c.
+    select LIBSQLITE
+    select LIBVFSCORE
+    select LIBVFSCORE_AUTOMOUNT_UP
+    select LIBRAMFS
+    select LIBUKCPIO
+    select LIBPOSIX_ENVIRON_LIBPARAM

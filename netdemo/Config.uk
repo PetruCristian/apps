@@ -1,0 +1,17 @@
+### Config.uk for a networking demo app on FreeBSD libc
+config APP_NETDEMO_FREEBSD
+    bool "Networking demo on FreeBSD Libc"
+    default y
+    select LIBFREEBSD_LIBC
+
+    # Socket stack: posix-socket is the syscall surface; lwip registers as the
+    # socket driver and provides the TCP/IP implementation + <netdb.h>.
+    select LIBPOSIX_SOCKET
+    select LIBLWIP
+
+    # lwip runs its stack on a cooperative scheduler thread.
+    select LIBUKSCHED
+    select LIBUKSCHEDCOOP
+
+    # vfscore: fd table / file descriptors the socket layer rides on.
+    select LIBVFSCORE

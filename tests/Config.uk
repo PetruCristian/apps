@@ -1,0 +1,14 @@
+### Config.uk for the FreeBSD-libc subsystem coverage tests
+config APP_FREEBSD_LIBC_TESTS
+    bool "FreeBSD libc subsystem coverage tests"
+    default y
+    select LIBFREEBSD_LIBC
+
+    # Filesystem support for the glob() test (creates files in a ramfs at /).
+    select LIBVFSCORE
+    select LIBVFSCORE_AUTOMOUNT_UP
+    select LIBRAMFS
+    select LIBUKCPIO
+
+    # Real environment for the environ test (getenv/setenv/unsetenv).
+    select LIBPOSIX_ENVIRON_LIBPARAM

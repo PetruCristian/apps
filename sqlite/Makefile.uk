@@ -1,0 +1,10 @@
+$(eval $(call addlib,appsqlite))
+
+APPSQLITE_SRCS-y += $(APPSQLITE_BASE)/main.c
+
+# Add FreeBSD libc includes to the entire application build
+CINCLUDES-y += $(LIBFREEBSD_LIBC_COMMON_INCLUDES)
+
+# SQLite specific flags
+LIBSQLITE_CFLAGS-y += -DSQLITE_THREADSAFE=0 -DSQLITE_OMIT_LOAD_EXTENSION
+LIBSQLITE_CINCLUDES-y += $(LIBFREEBSD_LIBC_COMMON_INCLUDES)

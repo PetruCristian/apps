@@ -1,0 +1,6 @@
+$(eval $(call addlib,appnetdemo))
+
+APPNETDEMO_SRCS-y += $(APPNETDEMO_BASE)/main.c
+
+# Make the FreeBSD libc header overlay visible to the whole application build.
+CINCLUDES-y += $(LIBFREEBSD_LIBC_COMMON_INCLUDES)

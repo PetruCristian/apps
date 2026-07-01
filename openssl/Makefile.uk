@@ -1,0 +1,9 @@
+$(eval $(call addlib,appopenssl))
+
+APPOPENSSL_SRCS-y += $(APPOPENSSL_BASE)/main.c
+# App-local stubs for OpenSSL BIO/init symbols unused by the crypto smoke test.
+APPOPENSSL_SRCS-y += $(APPOPENSSL_BASE)/glue.c
+
+# Make the FreeBSD libc header overlay visible to the whole application build
+# (OpenSSL itself gets it via lib-freebsd-libc's GLOBAL_INCLUDES).
+CINCLUDES-y += $(LIBFREEBSD_LIBC_COMMON_INCLUDES)

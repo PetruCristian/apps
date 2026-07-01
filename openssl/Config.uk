@@ -1,0 +1,16 @@
+### Config.uk for an OpenSSL libcrypto test app on FreeBSD libc
+config APP_OPENSSL_FREEBSD
+    bool "OpenSSL crypto test with FreeBSD Libc"
+    default y
+    select LIBFREEBSD_LIBC
+
+    # OpenSSL: crypto only (no TLS). LIBCRYPTO transitively selects
+    # lwip / pthread-embedded / posix-user / posix-libdl / syscall-shim /
+    # ukrandom(+devfs) via lib-openssl's own Config.uk.
+    select LIBOPENSSL
+    select LIBCRYPTO
+
+    # opendir/readdir/closedir: used by our libc glob.c and OpenSSL's o_dir.c.
+    # Provided for real by vfscore (link is satisfied even with nothing mounted;
+    # the crypto smoke test never walks a directory).
+    select LIBVFSCORE

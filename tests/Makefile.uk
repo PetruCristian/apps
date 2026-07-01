@@ -1,0 +1,6 @@
+$(eval $(call addlib,apptests))
+
+APPTESTS_SRCS-y += $(APPTESTS_BASE)/main.c
+
+# Add FreeBSD libc includes to the entire application build
+CINCLUDES-y += $(LIBFREEBSD_LIBC_COMMON_INCLUDES)
